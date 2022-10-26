@@ -1,0 +1,47 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarMaterias()">
+  <mat-card class="card">
+    <h1 style="text-align: center;" >Agregar Materia</h1>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materias.nombre" placeholder="Nombre Materia" formControlName="nombre">
+    <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materias.grado" placeholder="Grado" formControlName="grado">
+    <mat-error *ngIf="addressForm.controls['grado'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materias.seccion" placeholder="Seccion" formControlName="seccion">
+    <mat-error *ngIf="addressForm.controls['seccion'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materias.docentes_id" placeholder="Id Docente" formControlName="docentes_id">
+    <mat-error *ngIf="addressForm.controls['docentes_id'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-select matInput [(ngModel)]="materias.status" placeholder="Estado" formControlName="status">
+      <mat-option *ngFor="let status of estado" [value]="status">
+        {{ status  }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarMaterias">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>
+

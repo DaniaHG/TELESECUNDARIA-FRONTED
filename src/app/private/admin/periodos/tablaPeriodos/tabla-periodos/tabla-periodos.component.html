@@ -1,0 +1,70 @@
+<div class="container ">
+    <div class="row ">
+      <div class="col order-first mt-3 mb-5">
+        <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+          <span>Unidad</span>
+          <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+            <mat-icon>refresh</mat-icon>
+          </rec>
+          <div class="example-spacer"></div>
+          <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar Unidad">Agregar</button>
+        </mat-toolbar>
+        <form [formGroup]="form" (ngSubmit)="grabar_localstorage()">
+          <div class="container p-1 mb-4 ">
+            <div class="row">
+              <div class="col order-last" >
+                <mat-form-field appearance="fill">
+                  <mat-label >Ciclo</mat-label>
+                  <mat-select (selectionChange)="cicloCambio($event.value)"  formControlName='ciclo'>
+                    <mat-option *ngFor="let periodo of collection" [value]="periodo.ciclo">
+                      {{periodo.ciclo}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </form>
+        <mat-card class="card">
+          <table class="full-width-table" class="table">
+            <thead>
+              <tr class=" text-center">
+                <th scope="col">Id</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Ciclo</th>
+                <th scope="col">Fecha Inicial</th>
+                <th scope="col">Fecha Final</th>
+                <th scope="col">Estado</th>
+
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let periodos of ListarPeriodos" class=" text-center">
+                <td>{{periodos.id}}</td>
+                <td>{{periodos.descripcion}}</td>
+                <td>{{periodos.ciclo}}</td>
+                <td>{{periodos.fecha_inicio | date: 'MMMM d, y'}}</td>
+                <td>{{periodos.fecha_fin | date: 'MMMM d, y'}}</td>
+                <td>{{periodos.status}}</td>
+
+
+                <td class="puntero" (click)="modificar(periodos.id)" style="color:rgb(30, 86, 198); "
+                  matTooltip="Editar unidad">
+                  <mat-icon>edit</mat-icon>
+                </td>
+
+                <td class="puntero" (click)="eliminar(periodos.id)" style="color :rgba(238, 20, 20, 0.952)"
+                  matTooltip="Eliminar unidad">
+                  <mat-icon>delete</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+

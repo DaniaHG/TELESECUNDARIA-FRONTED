@@ -1,0 +1,48 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarTareas()">
+    <mat-card class="card">
+      <h1 style="text-align: center;">Agregar Tareas </h1>
+
+
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="tareas.fecha" type="date" placeholder="Fecha" formControlName="fecha">
+        <mat-error *ngIf="addressForm.controls['fecha'].hasError('required')">
+          <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="tareas.nombre" placeholder="Nombre" formControlName="nombre">
+      <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+        <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="tareas.descripcion" placeholder="Descripcion" formControlName="descripcion">
+      <mat-error *ngIf="addressForm.controls['descripcion'].hasError('required')">
+        <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="tareas.materias_id" placeholder="Id Materias" formControlName="materias_id">
+        <mat-error *ngIf="addressForm.controls['materias_id'].hasError('required')">
+          <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="tareas.periodos_id" placeholder="Id Periodos" formControlName="periodos_id">
+        <mat-error *ngIf="addressForm.controls['periodos_id'].hasError('required')">
+          <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+    <mat-card-actions style="text-align: center;">
+      <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+      <button mat-raised-button color="primary" routerLink="/mostrarTareas">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+  </form>
+
+

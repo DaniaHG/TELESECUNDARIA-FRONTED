@@ -1,0 +1,48 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarPeriodos()">
+  <mat-card class="card">
+    <h1 style="text-align: center;" >Agregar Unidad</h1>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="periodos.descripcion" placeholder="Descripcion" formControlName="descripcion">
+    <mat-error *ngIf="addressForm.controls['descripcion'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="periodos.ciclo" placeholder="Ciclo" formControlName="ciclo">
+    <mat-error *ngIf="addressForm.controls['ciclo'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="periodos.fecha_inicio" type="date" placeholder="Fecha Inicio" formControlName="fecha_inicio">
+    <mat-error *ngIf="addressForm.controls['fecha_inicio'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="periodos.fecha_fin" type="date" placeholder="Fecha Fin" formControlName="fecha_fin">
+    <mat-error *ngIf="addressForm.controls['fecha_fin'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select matInput [(ngModel)]="periodos.status" placeholder="Estado" formControlName="status">
+      <mat-option *ngFor="let status of estado" [value]="status">
+        {{ status  }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarPeriodos">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>

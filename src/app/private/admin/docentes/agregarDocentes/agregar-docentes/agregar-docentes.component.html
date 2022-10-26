@@ -1,0 +1,69 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarDocentes()">
+  <mat-card class="card">
+    <h1 style="text-align: center;" >Agregar Docente</h1>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.dpi" placeholder="DPI" formControlName="dpi">
+    <mat-error *ngIf="addressForm.controls['dpi'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.nombre" placeholder="Nombre" formControlName="nombre">
+    <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.fecha_nacimiento" type="date" placeholder="Fecha Nacimiento" formControlName="fecha_nacimiento">
+    <mat-error *ngIf="addressForm.controls['fecha_nacimiento'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.fecha_ingreso" type="date" placeholder="Fecha Ingreso" formControlName="fecha_ingreso">
+    <mat-error *ngIf="addressForm.controls['fecha_ingreso'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.direccion" placeholder="Direccion" formControlName="direccion">
+    <mat-error *ngIf="addressForm.controls['direccion'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.telefono" placeholder="Telefono" formControlName="telefono">
+    <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="docentes.correo" placeholder="Correo" formControlName="correo">
+    <mat-error *ngIf="addressForm.controls['correo'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select matInput [(ngModel)]="docentes.status" placeholder="Estado" formControlName="status">
+      <mat-option *ngFor="let status of estado" [value]="status">
+        {{ status  }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarDocentes">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>

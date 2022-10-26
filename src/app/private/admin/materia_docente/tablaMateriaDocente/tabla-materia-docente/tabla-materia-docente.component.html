@@ -1,0 +1,47 @@
+<div class="container ">
+  <div class="row ">
+    <div class="col order-first mt-3 mb-5">
+      <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+        <span>Materias Docente</span>
+        <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+          <mat-icon>refresh</mat-icon>
+        </rec>
+        <div class="example-spacer"></div>
+        <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar Materia Docente">Agregar</button>
+      </mat-toolbar>
+      <mat-card class="card">
+        <table class="full-width-table" class="table">
+          <thead>
+            <tr class=" text-center">
+              <th scope="col">Id</th>
+              <th scope="col">Docente</th>
+              <th scope="col">Materia</th>
+
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let materiasDocente of ListarMateriasDocente" class=" text-center">
+              <td>{{materiasDocente.id}}</td>
+              <td>{{materiasDocente.docente}}</td>
+              <td>{{materiasDocente.materia}}</td>
+
+
+              <td class="puntero" (click)="modificar(materiasDocente.id)" style="color:rgb(30, 86, 198); "
+                matTooltip="Editar Materia Docente">
+                <mat-icon>edit</mat-icon>
+              </td>
+
+              <td class="puntero" (click)="eliminar(materiasDocente.id)" style="color :rgba(238, 20, 20, 0.952)"
+                matTooltip="Eliminar Materia Docente">
+                <mat-icon>delete</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>

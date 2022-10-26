@@ -1,0 +1,13 @@
+/* spacing */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgb(215, 215, 215);
+  }
+  
+  th, td {
+    padding: 5px;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid rgb(215, 215, 215);
+  }

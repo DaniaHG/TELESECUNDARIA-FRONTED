@@ -1,0 +1,37 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarMateriaAlumno()">
+  <mat-card class="card">
+    <h1 style="text-align: center;">Agregar Materia Alumno</h1>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="materiasAlumno.alumnos_id" placeholder="Id Alumno" formControlName="alumnos_id">
+      <mat-error *ngIf="addressForm.controls['alumnos_id'].hasError('required')">
+        <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="materiasAlumno.materias_id" placeholder="Id Materia" formControlName="materias_id">
+      <mat-error *ngIf="addressForm.controls['materias_id'].hasError('required')">
+        <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-select matInput [(ngModel)]="materiasAlumno.status" placeholder="Estado" formControlName="status">
+        <mat-option *ngFor="let status of estado" [value]="status">
+          {{ status  }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
+        <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarMateriasalumnos_id">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>
+
+

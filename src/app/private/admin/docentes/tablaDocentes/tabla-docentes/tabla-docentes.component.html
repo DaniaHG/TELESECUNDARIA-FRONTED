@@ -1,0 +1,59 @@
+<div class="container ">
+  <div class="row ">
+    <div class="col order-first mt-3 mb-5">
+      <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+        <span>Docente</span>
+        <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+          <mat-icon>refresh</mat-icon>
+        </rec>
+        <div class="example-spacer"></div>
+        <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar Docente">Agregar</button>
+      </mat-toolbar>
+      <mat-card class="card">
+        <table class="full-width-table" class="table">
+          <thead>
+            <tr class=" text-center">
+              <th scope="col">Id</th>
+              <th scope="col">DPI</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Fecha Nacimiento</th>
+              <th scope="col">Fecha Ingreso</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Estado</th>
+
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let docentes of ListarDocentes" class=" text-center">
+              <td>{{docentes.id}}</td>
+              <td>{{docentes.dpi}}</td>
+              <td>{{docentes.nombre}}</td>
+              <td>{{docentes.fecha_nacimiento | date: 'MMMM d, y'}}</td>
+              <td>{{docentes.fecha_ingreso | date: 'MMMM d, y'}}</td>
+              <td>{{docentes.direccion}}</td>
+              <td>{{docentes.telefono}}</td>
+              <td>{{docentes.correo}}</td>
+              <td>{{docentes.status}}</td>
+
+
+              <td class="puntero" (click)="modificar(docentes.id)" style="color:rgb(30, 86, 198); "
+                matTooltip="Editar Docente">
+                <mat-icon>edit</mat-icon>
+              </td>
+
+              <td class="puntero" (click)="eliminar(docentes.id)" style="color :rgba(238, 20, 20, 0.952)"
+                matTooltip="Eliminar Docente">
+                <mat-icon>delete</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>

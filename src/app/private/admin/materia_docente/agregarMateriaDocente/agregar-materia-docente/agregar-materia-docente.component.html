@@ -1,0 +1,26 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarMateriaDocente()">
+  <mat-card class="card">
+    <h1 style="text-align: center;">Agregar Materia Docente</h1>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materiasDocente.docentes_id" placeholder="Id Docente" formControlName="docentes_id">
+    <mat-error *ngIf="addressForm.controls['docentes_id'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="materiasDocente.materias_id" placeholder="Id Materia" formControlName="materias_id">
+    <mat-error *ngIf="addressForm.controls['materias_id'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarMateriasDocente">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>
+
+

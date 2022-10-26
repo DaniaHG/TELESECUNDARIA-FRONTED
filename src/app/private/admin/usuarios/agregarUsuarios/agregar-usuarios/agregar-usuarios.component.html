@@ -1,0 +1,38 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="agregarUsuarios()">
+  <mat-card class="card">
+    <h1 style="text-align: center;" >Agregar Usuarios</h1>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="usuarios.userName" placeholder="Usuario" formControlName="userName">
+    <mat-error *ngIf="addressForm.controls['userName'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="usuarios.idDocente" placeholder="Id Docente (opcional)" formControlName="idDocente">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="usuarios.pass" placeholder="Contraseña" formControlName="pass">
+    <mat-error *ngIf="addressForm.controls['pass'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select matInput [(ngModel)]="usuarios.roleId" placeholder="Rol" formControlName="roleId">
+      <mat-option *ngFor="let status of roleId" [value]="status">
+        {{ status  }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addressForm.controls['roleId'].hasError('required')">
+      <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-card-actions style="text-align: center;">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button color="primary" routerLink="/mostrarUsuarios">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+</form>

@@ -1,0 +1,44 @@
+<div id="content" class="container ">
+  <div class="row ">
+    <div class="col order-first mt-3 mb-5">
+      <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+        <span>Reporte Tareas</span>
+        <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+          <mat-icon>refresh</mat-icon>
+        </rec>
+        <div class="example-spacer"></div>
+        <button mat-raised-button color="primary" (click)="imprimir()" matTooltip="Imprimir Reporte">Imprimir</button>
+      </mat-toolbar>
+      <mat-card class="card">
+        <table class="full-width-table" class="table">
+          <thead>
+            <tr class=" text-center">
+              <th scope="col">Id</th>
+              <th scope="col">Status</th>
+              <th scope="col">Alumno ID</th>
+              <th scope="col">Alumno</th>
+              <th scope="col">Tarea ID</th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Materia</th>
+              <th scope="col">Periodo</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entregaTareas of ListarEntregaTareas" class=" text-center">
+              <td>{{entregaTareas.id}}</td>
+              <td>{{entregaTareas.status}}</td>
+              <td>{{entregaTareas.alumnos_id}}</td>
+              <td>{{entregaTareas.alumno}}</td>
+              <td>{{entregaTareas.tareas_id}}</td>
+              <td>{{entregaTareas.tarea}}</td>
+              <td>{{entregaTareas.materia}}</td>
+              <td>{{entregaTareas.periodo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
