@@ -15,26 +15,22 @@
           <thead>
             <tr class=" text-center">
               <th scope="col">Id</th>
-              <th scope="col">Status</th>
-              <th scope="col">Alumno ID</th>
               <th scope="col">Alumno</th>
-              <th scope="col">Tarea ID</th>
-              <th scope="col">Tarea</th>
               <th scope="col">Materia</th>
               <th scope="col">Periodo</th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Status</th>
 
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entregaTareas of ListarEntregaTareas" class=" text-center">
               <td>{{entregaTareas.id}}</td>
-              <td>{{entregaTareas.status}}</td>
-              <td>{{entregaTareas.alumnos_id}}</td>
               <td>{{entregaTareas.alumno}}</td>
-              <td>{{entregaTareas.tareas_id}}</td>
-              <td>{{entregaTareas.tarea}}</td>
               <td>{{entregaTareas.materia}}</td>
               <td>{{entregaTareas.periodo}}</td>
+              <td>{{entregaTareas.tarea}}</td>
+              <td>{{entregaTareas.status}}</td>
             </tr>
           </tbody>
         </table>
@@ -42,4 +38,4 @@
     </div>
   </div>
 </div>
-</html> 
+</html>

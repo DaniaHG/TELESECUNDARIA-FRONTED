@@ -19,10 +19,10 @@ export class TablaReporteTareasComponent implements OnInit {
   ListarEntregaTareas!: EntregaTareas[];
 
   constructor(private entregaTareasService:EntregaTareasService, private router:Router) { }
-  
+
   ngOnInit(): void {
     this.listarEntregaTareas();
-    
+
   }
 
   listarEntregaTareas(){
@@ -42,12 +42,14 @@ export class TablaReporteTareasComponent implements OnInit {
   imprimir(){
     printJS({
 	    printable: this.teamJSON,
-	    properties: ['Id','Status','Alumno ID','Alumno','Tarea ID','Tarea','Materia','Periodo'],
+	    properties: ['id','alumno','materia','periodo','tarea','status'],
 	    type: 'json',
 	    gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
 	    gridStyle: 'border: 2px solid #3971A5;'
 	})
-   
+
+
+
   }
 
     actualizar(){
