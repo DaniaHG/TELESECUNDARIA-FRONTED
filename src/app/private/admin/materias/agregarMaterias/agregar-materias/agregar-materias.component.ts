@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
@@ -27,6 +29,15 @@ export class AgregarMateriasComponent implements OnInit {
       'activo', 'inactivo'
     ];
 
+    grado: any[] = [
+      'Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto'
+    ];
+
+    seccion: any[] = [
+      'A', 'B', 'C', 'D'
+    ];
+
+
     addressForm = this.fb.group({
       id: [''],
       nombre: ['', Validators.required],
@@ -41,11 +52,25 @@ export class AgregarMateriasComponent implements OnInit {
   constructor(private materiasService:MateriasService,
               private router:Router,
               private fb: FormBuilder,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cargarMaterias();
+    this.getCollection();
     }
+
+    collection = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+
+    getCollection() {
+      this.http
+        .get<any>(environment.URL_BASE + 'docentes').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
+
 
     cargarMaterias() {
       const id = this._activatedRoute.snapshot.params.id;

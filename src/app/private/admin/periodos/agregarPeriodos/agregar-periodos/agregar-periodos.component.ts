@@ -25,6 +25,10 @@ export class AgregarPeriodosComponent implements OnInit {
       'activo', 'inactivo'
     ];
 
+    descripcion: any[] = [
+      'Primera unidad', 'Segunda unidad', 'Tercera unidad', 'Cuarta unidad'
+    ];
+
     addressForm = this.fb.group({
       id: [''],
       descripcion: ['', Validators.required],

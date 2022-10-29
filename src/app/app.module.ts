@@ -48,6 +48,7 @@ import { AgregarTareasComponent } from './private/docente/tareas/agregarTareas/a
 import { TablaTareasComponent } from './private/docente/tareas/tabalaTareas/tabla-tareas/tabla-tareas.component';
 import { LoginFormularioComponent } from './public/login-formulario/login-formulario.component';
 import { registerLocaleData } from '@angular/common';
+import { TablaAsignacionesComponent } from './private/docente/mis_asignaciones/tablaAsignaciones/tabla-asignaciones/tabla-asignaciones.component';
 registerLocaleData(localeEs,'es');
 
 @NgModule({
@@ -73,7 +74,8 @@ registerLocaleData(localeEs,'es');
     TablaUsuariosComponent,
     TablaReporteTareasComponent,
     AgregarTareasComponent,
-    TablaTareasComponent
+    TablaTareasComponent,
+    TablaAsignacionesComponent
   ],
   imports: [
     BrowserModule,

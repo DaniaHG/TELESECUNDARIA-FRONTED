@@ -9,19 +9,32 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="materias.grado" placeholder="Grado" formControlName="grado">
+    <mat-select matInput [(ngModel)]="materias.grado" placeholder="Grado" formControlName="grado">
+      <mat-option *ngFor="let grado of grado" [value]="grado">
+        {{ grado  }}
+      </mat-option>
+    </mat-select>
     <mat-error *ngIf="addressForm.controls['grado'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="materias.seccion" placeholder="Seccion" formControlName="seccion">
+    <mat-select matInput [(ngModel)]="materias.seccion" placeholder="Seccion" formControlName="seccion">
+      <mat-option *ngFor="let seccion of seccion" [value]="seccion">
+        {{ seccion  }}
+      </mat-option>
+    </mat-select>
     <mat-error *ngIf="addressForm.controls['seccion'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="materias.docentes_id" placeholder="Id Docente" formControlName="docentes_id">
+    <mat-label >Docente</mat-label>
+    <mat-select matInput [(ngModel)]="materias.docentes_id" (selectionChange)="materias.docentes_id"  formControlName='docentes_id'>
+      <mat-option *ngFor="let docente of collection" [value]="docente.id">
+        {{docente.nombre}}
+      </mat-option>
+    </mat-select>
     <mat-error *ngIf="addressForm.controls['docentes_id'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>

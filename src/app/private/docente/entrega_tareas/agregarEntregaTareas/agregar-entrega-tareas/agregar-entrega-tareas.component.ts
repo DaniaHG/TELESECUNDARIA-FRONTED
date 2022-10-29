@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -44,10 +46,35 @@ export class AgregarEntregaTareasComponent implements OnInit {
   constructor(private entregaTareasService:EntregaTareasService,
               private router:Router,
               private fb: FormBuilder,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cargarEntregaTareas();
+    this.getCollection();
+    this.getCollectionAlumno();
+    }
+
+    collection = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+    collectionAlumno = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+
+    getCollection() {
+      this.http
+        .get<any>(environment.URL_BASE + 'tareas').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
+
+
+    getCollectionAlumno() {
+      this.http
+        .get<any>(environment.URL_BASE + 'alumnos_docente').subscribe((res: any) => {
+        this.collectionAlumno = res;
+      }, error => {
+        console.log({ error });
+      })
     }
 
     cargarEntregaTareas() {

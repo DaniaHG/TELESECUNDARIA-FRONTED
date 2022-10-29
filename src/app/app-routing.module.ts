@@ -1,3 +1,4 @@
+import { TablaAsignacionesComponent } from './private/docente/mis_asignaciones/tablaAsignaciones/tabla-asignaciones/tabla-asignaciones.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -74,7 +75,9 @@ const routes: Routes = [
   //EntregaTareas
   { path: 'mostrarEntregaTareas', component: TablaEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
   { path: 'agregarEntregaTareas', component: AgregarEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
-  { path: 'modificarEntregaTareas/:id', component: AgregarEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] }
+  { path: 'modificarEntregaTareas/:id', component: AgregarEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
+  //Asignaciones
+  { path: 'mostrarAsignaciones', component: TablaAsignacionesComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] }
 ];
 
 @NgModule({

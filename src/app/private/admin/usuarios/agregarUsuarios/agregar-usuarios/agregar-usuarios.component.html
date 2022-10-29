@@ -9,11 +9,17 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="usuarios.idDocente" placeholder="Id Docente (opcional)" formControlName="idDocente">
+    <mat-label >Docente (opcional)</mat-label>
+    <mat-select matInput [(ngModel)]="usuarios.idDocente" (selectionChange)="usuarios.idDocente"  formControlName='idDocente'>
+      <mat-option *ngFor="let docente of collection" [value]="docente.id">
+        {{docente.nombre}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
+
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="usuarios.pass" placeholder="Contraseña" formControlName="pass">
+    <input matInput [(ngModel)]="usuarios.pass" type="password" placeholder="Contraseña" formControlName="pass">
     <mat-error *ngIf="addressForm.controls['pass'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>

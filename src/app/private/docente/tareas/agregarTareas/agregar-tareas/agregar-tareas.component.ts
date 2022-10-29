@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -42,11 +44,36 @@ export class AgregarTareasComponent implements OnInit {
   constructor(private tareasService: TareasService,
     private router: Router,
     private fb: FormBuilder,
-    private _activatedRoute: ActivatedRoute) { }
+    private _activatedRoute: ActivatedRoute,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cargarTareas();
+    this.getCollection();
+    this.getCollectionPeriodos();
   }
+
+  collection = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+  collectionPeriodos = [{ 'descripcion': this.getCollection, 'id': this.getCollection }];
+
+    getCollection() {
+      this.http
+        .get<any>(environment.URL_BASE + 'materias_tareas').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
+
+    getCollectionPeriodos() {
+      this.http
+        .get<any>(environment.URL_BASE + 'periodos_docente').subscribe((res: any) => {
+        this.collectionPeriodos = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
+
 
   cargarTareas() {
     const id = this._activatedRoute.snapshot.params.id;
