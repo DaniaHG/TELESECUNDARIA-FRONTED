@@ -2,15 +2,27 @@
   <mat-card class="card">
     <h1 style="text-align: center;">Agregar Materia Alumno</h1>
 
+
     <mat-form-field class="full-width">
-      <input matInput [(ngModel)]="materiasAlumno.alumnos_id" placeholder="Id Alumno" formControlName="alumnos_id">
+      <mat-label >Alumno</mat-label>
+      <mat-select matInput [(ngModel)]="materiasAlumno.alumnos_id" (selectionChange)="materiasAlumno.alumnos_id"  formControlName='alumnos_id'>
+        <mat-option *ngFor="let alumno of collectionAlumnos" [value]="alumno.id">
+          {{alumno.nombre}}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="addressForm.controls['alumnos_id'].hasError('required')">
         <strong>requerido</strong>
       </mat-error>
     </mat-form-field>
 
+
     <mat-form-field class="full-width">
-      <input matInput [(ngModel)]="materiasAlumno.materias_id" placeholder="Id Materia" formControlName="materias_id">
+      <mat-label >Materia</mat-label>
+      <mat-select [(ngModel)]="materiasAlumno.materias_id" (selectionChange)="materiasAlumno.materias_id"  formControlName='materias_id'>
+        <mat-option *ngFor="let materia of collection" [value]="materia.id">
+          {{materia.nombre}}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="addressForm.controls['materias_id'].hasError('required')">
         <strong>requerido</strong>
       </mat-error>

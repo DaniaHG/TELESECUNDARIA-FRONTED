@@ -35,7 +35,7 @@ export class TablaMateriasComponent implements OnInit {
       res=>{
         console.log('Eliminado');
 
-        this.router.navigate(['/mostrarDocentes']);
+        this.router.navigate(['/mostrarMaterias']);
 
 
       },

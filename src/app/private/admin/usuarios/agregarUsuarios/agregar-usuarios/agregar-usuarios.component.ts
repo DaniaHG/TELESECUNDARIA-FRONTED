@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
 
@@ -39,11 +41,25 @@ export class AgregarUsuariosComponent implements OnInit {
   constructor(private usuariosService: UsuariosService,
     private router: Router,
     private fb: FormBuilder,
-    private _activatedRoute: ActivatedRoute) { }
+    private _activatedRoute: ActivatedRoute,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    this.getCollection();
   }
+
+
+  collection = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+
+    getCollection() {
+      this.http
+        .get<any>(environment.URL_BASE + 'docentes').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
 
   cargarUsuarios() {
     const id = this._activatedRoute.snapshot.params.id;

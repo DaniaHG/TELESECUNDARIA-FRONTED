@@ -3,14 +3,24 @@
       <h1 style="text-align: center;">Agregar Entrega Tareas </h1>
 
       <mat-form-field class="full-width">
-        <input matInput [(ngModel)]="entregaTareas.tareas_id" placeholder="ID Tarea" formControlName="tareas_id">
+        <mat-label >Tarea</mat-label>
+        <mat-select matInput [(ngModel)]="entregaTareas.tareas_id" (selectionChange)="entregaTareas.tareas_id"  formControlName='tareas_id'>
+          <mat-option *ngFor="let tarea of collection" [value]="tarea.id">
+            {{tarea.nombre}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="addressForm.controls['tareas_id'].hasError('required')">
           <strong>requerido</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput [(ngModel)]="entregaTareas.alumnos_id" placeholder="ID Alumno" formControlName="alumnos_id">
+        <mat-label >Alumno</mat-label>
+        <mat-select matInput [(ngModel)]="entregaTareas.alumnos_id" (selectionChange)="entregaTareas.alumnos_id"  formControlName='alumnos_id'>
+          <mat-option *ngFor="let alumno of collectionAlumno" [value]="alumno.id">
+            {{alumno.nombre}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="addressForm.controls['alumnos_id'].hasError('required')">
           <strong>requerido</strong>
         </mat-error>

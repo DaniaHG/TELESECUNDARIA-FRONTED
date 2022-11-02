@@ -1,3 +1,6 @@
+import { Materias } from 'src/app/interfaces/materias';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Validators, FormBuilder } from '@angular/forms';
@@ -11,6 +14,7 @@ import { MateriaAlumnoService } from 'src/app/services/materia-alumno.service';
   styleUrls: ['./agregar-materia-alumno.component.css']
 })
 export class AgregarMateriaAlumnoComponent implements OnInit {
+
 
   materiasAlumno: MateriaAlumno= {
     id: '',
@@ -41,10 +45,34 @@ export class AgregarMateriaAlumnoComponent implements OnInit {
   constructor(private materiasAlumnoService:MateriaAlumnoService,
               private router:Router,
               private fb: FormBuilder,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cargarMateriaAlumno();
+    this.getCollection();
+    this.getCollectionAlumnos();
+    }
+
+    collection = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+    collectionAlumnos = [{ 'nombre': this.getCollection, 'id': this.getCollection }];
+
+    getCollection() {
+      this.http
+        .get<any>(environment.URL_BASE + 'materias').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+    }
+
+    getCollectionAlumnos() {
+      this.http
+        .get<any>(environment.URL_BASE + 'alumnos').subscribe((res: any) => {
+        this.collectionAlumnos = res;
+      }, error => {
+        console.log({ error });
+      })
     }
 
     cargarMateriaAlumno() {

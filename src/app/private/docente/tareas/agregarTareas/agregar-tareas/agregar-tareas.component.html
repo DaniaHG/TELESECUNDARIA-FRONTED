@@ -24,15 +24,25 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width">
-        <input matInput [(ngModel)]="tareas.materias_id" placeholder="Id Materias" formControlName="materias_id">
+      <mat-form-field class="full-width">
+        <mat-label >Materia</mat-label>
+        <mat-select matInput [(ngModel)]="tareas.materias_id" (selectionChange)="tareas.materias_id"  formControlName='materias_id'>
+          <mat-option *ngFor="let mat of collection" [value]="mat.id">
+            {{mat.nombre}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="addressForm.controls['materias_id'].hasError('required')">
           <strong>requerido</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput [(ngModel)]="tareas.periodos_id" placeholder="Id Periodos" formControlName="periodos_id">
+        <mat-label >Periodo</mat-label>
+        <mat-select matInput [(ngModel)]="tareas.periodos_id" (selectionChange)="tareas.periodos_id"  formControlName='periodos_id'>
+          <mat-option *ngFor="let per of collectionPeriodos" [value]="per.id">
+            {{per.descripcion}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="addressForm.controls['periodos_id'].hasError('required')">
           <strong>requerido</strong>
         </mat-error>

@@ -34,7 +34,7 @@ export class TablaUsuariosComponent implements OnInit {
       res => {
         console.log('Eliminado');
 
-        this.router.navigate(['/mostrarDocentes']);
+        this.router.navigate(['/mostrarUsuarios']);
 
 
       },

@@ -3,6 +3,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EntregaTareasService } from 'src/app/services/entrega-tareas.service';
 import { EntregaTareas } from 'src/app/interfaces/entrega_tareas';
 import jsPDF from 'jspdf';
+import * as printJS from 'print-js'
+
 
 @Component({
   selector: 'app-tabla-reporte-tareas',
@@ -13,12 +15,14 @@ import jsPDF from 'jspdf';
 
 export class TablaReporteTareasComponent implements OnInit {
 
-
+  teamJSON!: JSON;
   ListarEntregaTareas!: EntregaTareas[];
+
   constructor(private entregaTareasService:EntregaTareasService, private router:Router) { }
 
   ngOnInit(): void {
     this.listarEntregaTareas();
+
   }
 
   listarEntregaTareas(){
@@ -27,6 +31,7 @@ export class TablaReporteTareasComponent implements OnInit {
       res=>{
         console.log(res)
         this.ListarEntregaTareas=<any>res;
+        this.teamJSON =<any>res;
       },
       err=> console.log(err)
 
@@ -35,12 +40,16 @@ export class TablaReporteTareasComponent implements OnInit {
   }
 
   imprimir(){
-    var doc = new jsPDF();
+    printJS({
+	    printable: this.teamJSON,
+	    properties: ['id','alumno','materia','periodo','tarea','status'],
+	    type: 'json',
+	    gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
+	    gridStyle: 'border: 2px solid #3971A5;'
+	})
 
-    doc.html(document.body, {
-     callback: function (doc) {
-     doc.save();
-   }});
+
+
   }
 
     actualizar(){

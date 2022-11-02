@@ -1,0 +1,39 @@
+<div class="container ">
+  <div class="row ">
+    <div class="col order-first mt-3 mb-5">
+      <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+        <span>Mis materias</span>
+        <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+          <mat-icon>refresh</mat-icon>
+        </rec>
+        <div class="example-spacer"></div>
+      </mat-toolbar>
+      <mat-card class="card">
+        <table class="full-width-table" class="table">
+          <thead>
+            <tr class=" text-center">
+              <th scope="col">Id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Grado</th>
+              <th scope="col">Seccion</th>
+              <th scope="col">Docente</th>
+              <th scope="col">Estado</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let materias of ListarMaterias" class=" text-center">
+              <td>{{materias.id}}</td>
+              <td>{{materias.nombre}}</td>
+              <td>{{materias.grado}}</td>
+              <td>{{materias.seccion}}</td>
+              <td>{{materias.docente}}</td>
+              <td>{{materias.status}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>
