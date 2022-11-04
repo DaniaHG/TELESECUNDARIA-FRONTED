@@ -7,7 +7,8 @@
             <mat-icon>refresh</mat-icon>
           </rec>
           <div class="example-spacer"></div>
-          <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar entrega de tareas">Agregar</button>
+            <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar entrega de tareas">Agregar</button>
+            <!--<button mat-raised-button color="primary" (click)="imprimir()" matTooltip="Imprimir Reporte">Imprimir</button>-->
         </mat-toolbar>
 
 
@@ -36,13 +37,12 @@
               <tr class=" text-center">
                 <th scope="col">Id</th>
                 <th scope="col">Tarea</th>
-       
+
                 <th scope="col">Alumno</th>
                 <th scope="col">Materia</th>
                 <th scope="col">Status</th>
                 <th scope="col">Calificacion</th>
 
-                <th scope="col">Editar</th>
                 <th scope="col">Guardar</th>
                 <th scope="col">Eliminar</th>
 
@@ -52,52 +52,49 @@
               <tr *ngFor="let entregaTareas of ListarEntrega2Tareas" class=" text-center">
                 <td>{{entregaTareas.id}}</td>
                 <td>
-              
+
 
                     <select [(ngModel)]="entregaTareas.tareas_id" class="select-css">
                       <option *ngFor="let tarea of collection2" [value]="tarea.id">{{tarea.nombre}}</option>
-  
+
                     </select>
 
-                
+
                   <div >
-                    
+
 
                   </div>
                 </td>
-             
+
                 <td>{{entregaTareas.alumno}}</td>
                 <td>{{entregaTareas.materia}}</td>
                 <td>
-                  
-                 
+
+
 
 
                     <select name="status"[(ngModel)]="entregaTareas.status" class="select-css">
-                      <option value="Entergado">Entregado</option>
+                      <option value="Entregado">Entregado</option>
                       <option value="Faltante">Faltante</option>
-                     
+
                     </select>
-                    
-                
-                
-                  
+
+
+
+
               </td>
                 <td>
                   <div >
                     <input type="text" [(ngModel)]="entregaTareas.calificacion" class="form-control">
                 </div>
-               
+
                  </td>
 
 <div *ngIf="entregaTareas.isEdit">
   <button class="btn btn-sm btn-success" (click)="save(entregaTareas)">Guardar</button>
 <button class="btn btn-sm btn-success" (click)="entregaTareas.isEdit = false">Cancelar</button>
 </div>
-                <td *ngIf="!entregaTareas.isEdit" class="puntero" (click)="onEdit(entregaTareas)" style="color:rgb(30, 86, 198); "
-                  matTooltip="Editar Entrega Tareas">
-                  <mat-icon>edit</mat-icon>
-                </td>
+
                 <td  class="puntero" (click)="save(entregaTareas)" style="color:rgb(30, 86, 198); "
                 matTooltip="Editar Entrega Tareas">
                 <mat-icon>save</mat-icon>

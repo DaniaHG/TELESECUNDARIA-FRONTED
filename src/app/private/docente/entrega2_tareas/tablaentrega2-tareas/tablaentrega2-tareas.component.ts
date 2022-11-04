@@ -6,6 +6,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+import jsPDF from 'jspdf';
+import * as printJS from 'print-js'
+
 
 
 @Component({
@@ -17,12 +20,12 @@ export class Tablaentrega2TareasComponent implements OnInit {
 
 
 
-
+  teamJSON!: JSON
   ListarEntrega2Tareas!: Entrega2Tareas[];
 
   materiaElegido!: string;
   tareaElegido!: string;
-  constructor(private entregaTareasService:Entrega2TareasService, private router:Router,private http: HttpClient, private fb: FormBuilder) { 
+  constructor(private entregaTareasService:Entrega2TareasService, private router:Router,private http: HttpClient, private fb: FormBuilder) {
     this.form = this.fb.group({
       materia: ['', Validators.required]
     })
@@ -48,7 +51,7 @@ export class Tablaentrega2TareasComponent implements OnInit {
     this.http
       .get<any>(environment.URL_BASE + 'materias_tareas').subscribe((res: any) => {
       this.collection = res;
-    
+
     }, error => {
       console.log({ error });
     })
@@ -80,6 +83,7 @@ export class Tablaentrega2TareasComponent implements OnInit {
       res=>{
         console.log(res)
         this.ListarEntrega2Tareas=<any>res;
+        this.teamJSON =<any>res;
       },
       err=> console.log(err)
 
@@ -91,6 +95,8 @@ export class Tablaentrega2TareasComponent implements OnInit {
     this.entregaTareasService.getMateriaEntrega2Tareas(this.materiaElegido).subscribe(
       res => {
         this.ListarEntrega2Tareas = <any>res;
+        this.teamJSON =<any>res;
+
       },
       err => console.log(err)
     );
@@ -101,7 +107,7 @@ export class Tablaentrega2TareasComponent implements OnInit {
   }
  tareaCambio(tarea: string) {
     this.tareaElegido = tarea
-    
+
   }
 
 
@@ -139,5 +145,21 @@ item.isEdit=true;
       this.entregaTareasService.putEntrega2Tareas(item.id, item);
       setTimeout(location.reload.bind(location),100);
     }
+
+    imprimir(){
+      printJS({
+        printable: this.teamJSON,
+        properties: ['id','alumno','materia','tarea','status','calificacion'],
+        type: 'json',
+        gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
+        gridStyle: 'border: 2px solid #3971A5;'
+    })
+
+
+
+    }
+
+
+
 
 }

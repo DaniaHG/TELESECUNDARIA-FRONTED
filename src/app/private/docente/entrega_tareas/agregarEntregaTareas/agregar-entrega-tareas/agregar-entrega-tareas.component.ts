@@ -27,7 +27,7 @@ export class AgregarEntregaTareasComponent implements OnInit {
     }
 
     estado: any[] = [
-      'entregado', 'faltante'
+      'Entregado', 'Faltante'
     ];
 
     addressForm = this.fb.group({
