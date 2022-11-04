@@ -16,8 +16,8 @@
                 <mat-form-field appearance="fill">
                   <mat-label >Ciclo</mat-label>
                   <mat-select (selectionChange)="cicloCambio($event.value)"  formControlName='ciclo'>
-                    <mat-option *ngFor="let periodo of collection" [value]="periodo.ciclo">
-                      {{periodo.ciclo}}
+                    <mat-option *ngFor="let ciclo of ciclo" [value]="ciclo">
+                      {{ciclo}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

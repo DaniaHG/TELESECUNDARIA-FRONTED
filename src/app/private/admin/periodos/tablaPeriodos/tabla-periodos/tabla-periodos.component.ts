@@ -19,32 +19,23 @@ export class TablaPeriodosComponent implements OnInit {
 
   cicloElegido!: string;
 
+    ciclo: any[] = [
+      '2022-1', '2022-2', '2022-3', '2022-4'
+    ];
+
   constructor(private periodosService: PeriodosService, private router: Router, private http: HttpClient, private fb: FormBuilder) {
     this.form = this.fb.group({
       ciclo: ['', Validators.required]
     })
 
   }
-
-  collection = [{ 'ciclo': this.getCollection }];
   form: FormGroup;
 
 
 
   ngOnInit(): void {
-    this.getCollection();
     this.listarPeriodos();
   }
-
-  getCollection() {
-    this.http
-      .get<any>(environment.URL_BASE + 'periodos').subscribe((res: any) => {
-      this.collection = res;
-    }, error => {
-      console.log({ error });
-    })
-  }
-
 
   grabar_localstorage() {
     console.log(this.form.value.ciclo)

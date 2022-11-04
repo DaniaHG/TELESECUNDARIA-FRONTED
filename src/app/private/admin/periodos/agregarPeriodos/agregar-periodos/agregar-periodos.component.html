@@ -14,7 +14,11 @@
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="periodos.ciclo" placeholder="Ciclo" formControlName="ciclo">
+    <mat-select matInput [(ngModel)]="periodos.ciclo" placeholder="Ciclo" formControlName="ciclo">
+      <mat-option *ngFor="let ciclo of ciclo" [value]="ciclo">
+        {{ ciclo  }}
+      </mat-option>
+    </mat-select>
     <mat-error *ngIf="addressForm.controls['ciclo'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>

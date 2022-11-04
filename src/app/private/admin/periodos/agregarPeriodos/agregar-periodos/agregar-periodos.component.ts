@@ -29,6 +29,10 @@ export class AgregarPeriodosComponent implements OnInit {
       'Primera unidad', 'Segunda unidad', 'Tercera unidad', 'Cuarta unidad'
     ];
 
+    ciclo: any[] = [
+      '2022-1', '2022-2', '2022-3', '2022-4'
+    ];
+
     addressForm = this.fb.group({
       id: [''],
       descripcion: ['', Validators.required],
