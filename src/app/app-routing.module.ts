@@ -28,6 +28,7 @@ import { LoginFormularioComponent } from './public/login-formulario/login-formul
 import { AuthGuard } from './auth.guard';
 import { RoleIDAdminGuard } from './roleid.admin.guard';
 import { RoleIDDocenteGuard } from './roleid.docente.guard';
+import { Tablaentrega2TareasComponent } from './private/docente/entrega2_tareas/tablaentrega2-tareas/tablaentrega2-tareas.component';
 
 const routes: Routes = [
 
@@ -77,7 +78,9 @@ const routes: Routes = [
   { path: 'agregarEntregaTareas', component: AgregarEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
   { path: 'modificarEntregaTareas/:id', component: AgregarEntregaTareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
   //Asignaciones
-  { path: 'mostrarAsignaciones', component: TablaAsignacionesComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] }
+  { path: 'mostrarAsignaciones', component: TablaAsignacionesComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
+  //Entrega2Tareas
+  { path: 'mostrarEntrega2Tareas', component: Tablaentrega2TareasComponent, canActivate: [RoleIDDocenteGuard, AuthGuard] },
 ];
 
 @NgModule({
