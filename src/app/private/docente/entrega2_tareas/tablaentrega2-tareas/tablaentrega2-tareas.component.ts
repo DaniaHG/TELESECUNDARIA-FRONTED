@@ -1,24 +1,24 @@
-import { environment } from './../../../../../../../environments/environment';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Entrega2TareasService } from 'src/app/services/entrega2-tareas.service';
+import { Entrega2Tareas } from 'src/app/interfaces/entrega2_tareas';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Entrega2TareasService } from './../../../../../../services/entrega2-tareas.service';
-import { Entrega2Tareas } from './../../../../../../interfaces/entrega2_tareas';
-import { Router } from '@angular/router';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { EntregaTareasService } from 'src/app/services/entrega-tareas.service';
-import { EntregaTareas } from 'src/app/interfaces/entrega_tareas';
+import { environment } from 'src/environments/environment';
+
 import jsPDF from 'jspdf';
 import * as printJS from 'print-js'
 
 
+
 @Component({
-  selector: 'app-tabla-reporte-tareas',
-  templateUrl: './tabla-reporte-tareas.component.html',
-  styleUrls: ['./tabla-reporte-tareas.component.css']
+  selector: 'app-tablaentrega2-tareas',
+  templateUrl: './tablaentrega2-tareas.component.html',
+  styleUrls: ['./tablaentrega2-tareas.component.css']
 })
+export class Tablaentrega2TareasComponent implements OnInit {
 
 
-export class TablaReporteTareasComponent implements OnInit {
 
   teamJSON!: JSON
   ListarEntrega2Tareas!: Entrega2Tareas[];
@@ -110,7 +110,39 @@ export class TablaReporteTareasComponent implements OnInit {
 
   }
 
+
+  eliminar(id:string){
+    this.entregaTareasService.deleteEntrega2Tareas(id).subscribe(
+      res=>{
+        console.log('Eliminado');
+
+        this.router.navigate(['/mostrarEntrega2Tareas']);
+
+
+      },
+      err=> console.log(err));
+      setTimeout(location.reload.bind(location),500);
+  }
+
+  modificar(id:string){
+    this.router.navigate(['modificarEntregaTareas',id])
+  }
+
+  agregar(){
+    this.router.navigate(["agregarEntregaTareas"])
+
+    }
     actualizar(){
+      setTimeout(location.reload.bind(location),100);
+    }
+
+    onEdit(item:any){
+item.isEdit=true;
+    }
+
+    save(item:any){
+      item.isEdit =false;
+      this.entregaTareasService.putEntrega2Tareas(item.id, item);
       setTimeout(location.reload.bind(location),100);
     }
 
@@ -126,4 +158,8 @@ export class TablaReporteTareasComponent implements OnInit {
 
 
     }
+
+
+
+
 }

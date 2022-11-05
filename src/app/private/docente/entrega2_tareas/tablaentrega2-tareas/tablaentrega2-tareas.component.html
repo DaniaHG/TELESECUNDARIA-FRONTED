@@ -1,0 +1,113 @@
+<div class="container ">
+    <div class="row ">
+      <div class="col order-first mt-3 mb-5">
+        <mat-toolbar style="background-color:rgb(241, 218, 87);" >
+          <span>Entrega de tareas</span>
+          <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
+            <mat-icon>refresh</mat-icon>
+          </rec>
+          <div class="example-spacer"></div>
+            <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar entrega de tareas">Agregar</button>
+            <!--<button mat-raised-button color="primary" (click)="imprimir()" matTooltip="Imprimir Reporte">Imprimir</button>-->
+        </mat-toolbar>
+
+
+        <form [formGroup]="form" (ngSubmit)="grabar_localstorage()">
+            <div class="container p-1 mb-4 ">
+              <div class="row">
+                <div class="col order-last" >
+                  <mat-form-field appearance="fill">
+                    <mat-label >Materia</mat-label>
+                    <mat-select (selectionChange)="materiaCambio($event.value)"  formControlName='materia'>
+                      <mat-option *ngFor="let entregaTareas of collection" [value]="entregaTareas.nombre">
+                        {{entregaTareas.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+
+        <mat-card class="card">
+          <table class="full-width-table" class="table">
+            <thead>
+              <tr class=" text-center">
+                <th scope="col">Id</th>
+                <th scope="col">Tarea</th>
+
+                <th scope="col">Alumno</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Status</th>
+                <th scope="col">Calificacion</th>
+
+                <th scope="col">Guardar</th>
+                <th scope="col">Eliminar</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entregaTareas of ListarEntrega2Tareas" class=" text-center">
+                <td>{{entregaTareas.id}}</td>
+                <td>
+
+
+                    <select [(ngModel)]="entregaTareas.tareas_id" class="select-css">
+                      <option *ngFor="let tarea of collection2" [value]="tarea.id">{{tarea.nombre}}</option>
+
+                    </select>
+
+
+                  <div >
+
+
+                  </div>
+                </td>
+
+                <td>{{entregaTareas.alumno}}</td>
+                <td>{{entregaTareas.materia}}</td>
+                <td>
+
+
+
+
+                    <select name="status"[(ngModel)]="entregaTareas.status" class="select-css">
+                      <option value="Entregado">Entregado</option>
+                      <option value="Faltante">Faltante</option>
+
+                    </select>
+
+
+
+
+              </td>
+                <td>
+                  <div >
+                    <input type="text" [(ngModel)]="entregaTareas.calificacion" class="form-control">
+                </div>
+
+                 </td>
+
+<div *ngIf="entregaTareas.isEdit">
+  <button class="btn btn-sm btn-success" (click)="save(entregaTareas)">Guardar</button>
+<button class="btn btn-sm btn-success" (click)="entregaTareas.isEdit = false">Cancelar</button>
+</div>
+
+                <td  class="puntero" (click)="save(entregaTareas)" style="color:rgb(30, 86, 198); "
+                matTooltip="Editar Entrega Tareas">
+                <mat-icon>save</mat-icon>
+              </td>
+
+                <td class="puntero" (click)="eliminar(entregaTareas.id)" style="color :rgba(238, 20, 20, 0.952)"
+                  matTooltip="Eliminar Entrega Tareas">
+                  <mat-icon>delete</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+  </div>
