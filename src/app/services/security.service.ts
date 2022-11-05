@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class SecurityService {
 
-  private URL = "http://localhost:3000/";
+  private URL = "https://back-telesecundaria.herokuapp.com/";
   //private URL = "https://api-rest-colegio.herokuapp.com/";
   constructor(private http : HttpClient) { }
 

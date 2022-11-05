@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL_BASE: "http://localhost:3000/"
+  URL_BASE: "https://back-telesecundaria.herokuapp.com/"
 };
