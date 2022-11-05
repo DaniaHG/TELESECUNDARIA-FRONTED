@@ -136,15 +136,11 @@ export class Tablaentrega2TareasComponent implements OnInit {
       setTimeout(location.reload.bind(location),100);
     }
 
-    onEdit(item:any){
-item.isEdit=true;
-    }
 
     save(item:any){
-      item.isEdit =false;
       this.entregaTareasService.putEntrega2Tareas(item.id, item);
       this.router.navigate(['/mostrarEntrega2Tareas']);
-      setTimeout(location.reload.bind(location),100);
+      //setTimeout(location.reload.bind(location),100);
     }
 
     imprimir(){
