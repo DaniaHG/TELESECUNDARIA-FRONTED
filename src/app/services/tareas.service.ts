@@ -21,8 +21,10 @@ export class TareasService {
     return this.http.get<Tareas[]>(this.URL + '/' + id);
   }
 
-  postTareas(tareas: Tareas): Observable<any> {
-    return this.http.post(this.URL, tareas);
+  postTareas(tareas: Tareas) {
+    return this.http.post(this.URL, tareas).subscribe(
+      res => console.log(res)
+    )
   }
 
   deleteTareas(id: string) {

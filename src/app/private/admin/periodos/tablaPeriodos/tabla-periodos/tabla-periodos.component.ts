@@ -5,6 +5,7 @@ import { PeriodosService } from 'src/app/services/periodos.service';
 import { Periodos } from 'src/app/interfaces/periodos';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 
 
@@ -76,8 +77,23 @@ export class TablaPeriodosComponent implements OnInit {
       res => {
         console.log('Eliminado');
         this.router.navigate(['/mostrarPeriodos']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
       },
       err => console.log(err));
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Oops algo salio mal',
+        showConfirmButton: false,
+        timer: 1500
+      })
     setTimeout(location.reload.bind(location), 500);
   }
 

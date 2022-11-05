@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Materias } from 'src/app/interfaces/materias';
 import { MateriasService } from 'src/app/services/materias.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla-materias',
@@ -36,10 +37,25 @@ export class TablaMateriasComponent implements OnInit {
         console.log('Eliminado');
 
         this.router.navigate(['/mostrarMaterias']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
 
 
       },
       err=> console.log(err));
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Oops algo salio mal',
+        showConfirmButton: false,
+        timer: 1500
+      })
       setTimeout(location.reload.bind(location),500);
   }
 

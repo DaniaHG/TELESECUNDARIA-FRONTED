@@ -3,6 +3,7 @@ import { SecurityService } from './../../services/security.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/services/security.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-formulario',
@@ -33,6 +34,7 @@ export class LoginFormularioComponent implements OnInit {
       const ObjUser = JSON.parse(user);
       if (ObjUser.roleId === "user") {
         this.router.navigate(['mostrarTareas']);
+
       } else {
         this.router.navigate(['mostrarDocentes']);
       }
@@ -46,8 +48,22 @@ export class LoginFormularioComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(res.user));
         if (res.user.roleId === "admin") {
           this.router.navigate(['mostrarDocentes']);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Bienvenido Administrador',
+            showConfirmButton: false,
+            timer: 1500
+          })
         } else {
           this.router.navigate(['mostrarTareas']);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Bienvenido Docente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
 
       }

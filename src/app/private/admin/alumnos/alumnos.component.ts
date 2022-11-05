@@ -2,6 +2,7 @@ import { Alumnos } from '../../../interfaces/alumnos';
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { AluService } from 'src/app/services/alu.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -36,10 +37,24 @@ export class AlumnosComponent implements OnInit {
         console.log('Eliminado');
 
         this.router.navigate(['/mostrarAlumnos']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
 
       },
       err=> console.log(err));
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Oops algo salio mal',
+        showConfirmButton: false,
+        timer: 1500
+      })
       setTimeout(location.reload.bind(location),500);
   }
 

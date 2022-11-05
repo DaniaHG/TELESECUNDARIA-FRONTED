@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TareasService } from '../../../../../services/tareas.service';
 import { Tareas } from '../../../../../interfaces/tareas';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -37,8 +38,22 @@ export class TablaTareasComponent implements OnInit {
       res => {
         console.log('Eliminado');
         this.router.navigate(['/mostrarTareas']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },
       err => console.log(err));
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Oops algo salio mal',
+        showConfirmButton: false,
+        timer: 1500
+      })
     setTimeout(location.reload.bind(location), 500);
   }
 

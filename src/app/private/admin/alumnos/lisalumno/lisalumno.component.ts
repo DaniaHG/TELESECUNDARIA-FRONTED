@@ -1,9 +1,11 @@
+
 import { Alumnos } from '../../../../interfaces/alumnos';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AluService } from 'src/app/services/alu.service';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -70,6 +72,13 @@ export class LisalumnoComponent implements OnInit {
       if(this.editing){
         this.aluservice.putAlumnos(this.alumnos.id, this.alumnos);
         this.router.navigate(['/mostrarAlumnos']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Modificado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       }else{
         const alumno: Alumnos = {
@@ -84,6 +93,15 @@ export class LisalumnoComponent implements OnInit {
         }
         this.aluservice.postAlumnos(alumno);
         this.router.navigate(['/mostrarAlumnos']);
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Agregado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
      }
     }
 }
