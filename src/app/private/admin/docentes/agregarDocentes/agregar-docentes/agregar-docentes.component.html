@@ -2,7 +2,7 @@
   <mat-card class="card">
     <h1 style="text-align: center;" >Agregar Docente</h1>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="docentes.dpi" placeholder="DPI" formControlName="dpi">
+    <input matInput [(ngModel)]="docentes.dpi" maxlength="13" placeholder="DPI" formControlName="dpi">
     <mat-error *ngIf="addressForm.controls['dpi'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>
@@ -37,7 +37,7 @@
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)]="docentes.telefono" placeholder="Telefono" formControlName="telefono">
+    <input matInput [(ngModel)]="docentes.telefono" maxlength="8" placeholder="Telefono" formControlName="telefono">
     <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
       <strong>requerido</strong>
     </mat-error>

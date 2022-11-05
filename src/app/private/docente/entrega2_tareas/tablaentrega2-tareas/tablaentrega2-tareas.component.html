@@ -6,9 +6,8 @@
           <rec class=" rec btn " (click)="actualizar()" style="color :rgba(15, 15, 15, 0.952)" matTooltip="Refrescar Tabla">
             <mat-icon>refresh</mat-icon>
           </rec>
-          <div class="example-spacer"></div>
-            <button mat-raised-button color="primary" (click)="agregar()" matTooltip="Agregar entrega de tareas">Agregar</button>
-            <!--<button mat-raised-button color="primary" (click)="imprimir()" matTooltip="Imprimir Reporte">Imprimir</button>-->
+
+
         </mat-toolbar>
 
 
@@ -44,7 +43,7 @@
                 <th scope="col">Calificacion</th>
 
                 <th scope="col">Guardar</th>
-                <th scope="col">Eliminar</th>
+                <!--<th scope="col">Eliminar</th>-->
 
               </tr>
             </thead>
@@ -100,10 +99,10 @@
                 <mat-icon>save</mat-icon>
               </td>
 
-                <td class="puntero" (click)="eliminar(entregaTareas.id)" style="color :rgba(238, 20, 20, 0.952)"
+              <!--<td class="puntero" (click)="eliminar(entregaTareas.id)" style="color :rgba(238, 20, 20, 0.952)"
                   matTooltip="Eliminar Entrega Tareas">
                   <mat-icon>delete</mat-icon>
-                </td>
+                </td>-->
               </tr>
             </tbody>
           </table>

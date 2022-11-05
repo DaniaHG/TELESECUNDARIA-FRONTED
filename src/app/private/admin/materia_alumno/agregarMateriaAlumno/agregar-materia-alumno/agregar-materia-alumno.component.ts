@@ -7,6 +7,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MateriaAlumno } from 'src/app/interfaces/materia-alumno';
 import { MateriaAlumnoService } from 'src/app/services/materia-alumno.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-materia-alumno',
@@ -96,6 +97,13 @@ export class AgregarMateriaAlumnoComponent implements OnInit {
       if(this.editing){
         this.materiasAlumnoService.putMateriaAlumno(this.materiasAlumno.id, this.materiasAlumno);
         this.router.navigate(['/mostrarMateriasAlumno']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Modificado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       }else{
         const materiaAlumno: MateriaAlumno = {
@@ -110,6 +118,13 @@ export class AgregarMateriaAlumnoComponent implements OnInit {
         }
         this.materiasAlumnoService.postMateriaAlumno(materiaAlumno);
         this.router.navigate(['/mostrarMateriasAlumno']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Agregado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
      }
     }
 

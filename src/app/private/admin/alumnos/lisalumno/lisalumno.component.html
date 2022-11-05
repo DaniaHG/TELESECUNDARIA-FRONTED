@@ -32,7 +32,7 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [(ngModel)]="alumnos.telefono" placeholder="Telefono" formControlName="telefono">
+      <input matInput [(ngModel)]="alumnos.telefono"  maxlength="8" placeholder="Telefono" formControlName="telefono">
       <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
         <strong>requerido</strong>
       </mat-error>

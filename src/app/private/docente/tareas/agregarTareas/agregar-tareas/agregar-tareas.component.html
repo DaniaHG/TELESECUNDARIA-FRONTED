@@ -11,7 +11,7 @@
       </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput [(ngModel)]="tareas.nombre" placeholder="Nombre" formControlName="nombre">
+      <input matInput [(ngModel)]="tareas.nombre" placeholder="Nombre tarea" formControlName="nombre">
       <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
         <strong>requerido</strong>
       </mat-error>

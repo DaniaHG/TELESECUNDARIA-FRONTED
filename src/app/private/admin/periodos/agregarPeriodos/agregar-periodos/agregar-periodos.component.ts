@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Periodos } from 'src/app/interfaces/periodos';
 import { PeriodosService } from 'src/app/services/periodos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-periodos',
@@ -73,6 +74,13 @@ export class AgregarPeriodosComponent implements OnInit {
       if(this.editing){
         this.periodosService.putPeriodos(this.periodos.id, this.periodos);
         this.router.navigate(['/mostrarPeriodos']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Modificado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       }else{
         const periodo: Periodos = {
@@ -85,6 +93,13 @@ export class AgregarPeriodosComponent implements OnInit {
         }
         this.periodosService.postPeriodos(periodo);
         this.router.navigate(['/mostrarPeriodos']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Agregado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
      }
     }
 }

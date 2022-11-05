@@ -6,6 +6,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/interfaces/usuarios';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-usuarios',
@@ -82,6 +83,13 @@ export class AgregarUsuariosComponent implements OnInit {
     if (this.editing) {
       this.usuariosService.putUsuarios(this.usuarios.id, this.usuarios);
       this.router.navigate(['/mostrarUsuarios']);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Modificado con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     } else {
       const usuario: Usuarios = {
@@ -94,6 +102,14 @@ export class AgregarUsuariosComponent implements OnInit {
       }
       this.usuariosService.postUsuarios(usuario);
       this.router.navigate(['/mostrarUsuarios']);
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Agregado con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
   }
 

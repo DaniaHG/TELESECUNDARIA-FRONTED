@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Docentes } from 'src/app/interfaces/docentes';
 import { DocentesService } from 'src/app/services/docentes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-docentes',
@@ -45,7 +47,8 @@ export class AgregarDocentesComponent implements OnInit {
   constructor(private docentesService:DocentesService,
               private router:Router,
               private fb: FormBuilder,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.cargarDocentes();
@@ -72,6 +75,13 @@ export class AgregarDocentesComponent implements OnInit {
       if(this.editing){
         this.docentesService.putDocentes(this.docentes.id, this.docentes);
         this.router.navigate(['/mostrarDocentes']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Modificado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       }else{
         const docente: Docentes = {
@@ -87,6 +97,15 @@ export class AgregarDocentesComponent implements OnInit {
         }
         this.docentesService.postDocentes(docente);
         this.router.navigate(['/mostrarDocentes']);
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Agregado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
      }
     }
 }

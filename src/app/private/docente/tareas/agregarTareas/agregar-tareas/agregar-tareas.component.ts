@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TareasService } from '../../../../../services/tareas.service';
 import { Tareas } from '../../../../../interfaces/tareas';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-tareas',
@@ -29,7 +30,7 @@ export class AgregarTareasComponent implements OnInit {
   }
   addressForm = this.fb.group({
     id: [''],
-    fecha: [''],
+    fecha: ['', Validators.required],
     nombre: ['', Validators.required],
     descripcion: ['', Validators.required],
     materias_id: ['', Validators.required],
@@ -96,6 +97,13 @@ export class AgregarTareasComponent implements OnInit {
     if (this.editing) {
       this.tareasService.putTareas(this.tareas.id, this.tareas);
       this.router.navigate(['/mostrarTareas']);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Modificado con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     } else {
       const tareas: Tareas = {
@@ -112,7 +120,16 @@ export class AgregarTareasComponent implements OnInit {
 
 
       }
-      this.tareasService.postTareas(tareas).subscribe((res) => { console.log(res); this.router.navigate(['/mostrarTareas']); });
+      this.tareasService.postTareas(tareas);
+      this.router.navigate(['/mostrarTareas']);
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Agregado con exito',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     }
   }
