@@ -143,6 +143,7 @@ item.isEdit=true;
     save(item:any){
       item.isEdit =false;
       this.entregaTareasService.putEntrega2Tareas(item.id, item);
+      this.router.navigate(['/mostrarEntrega2Tareas']);
       setTimeout(location.reload.bind(location),100);
     }
 
